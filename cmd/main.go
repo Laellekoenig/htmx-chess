@@ -30,6 +30,7 @@ func main() {
   app := echo.New()
   app.Renderer = newTemplate()
   app.Use(middleware.Logger())
+  app.Static("/static", "static")
   routes.AddRoutes(app, d)
   app.Logger.Fatal(app.Start(":3000"))
 }

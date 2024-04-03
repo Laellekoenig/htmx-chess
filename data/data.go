@@ -1,9 +1,25 @@
 package data
 
+type PieceType = int
+const (
+  Pawn PieceType = iota
+  Rook
+  Knight
+  Bishop
+  Queen
+  King
+)
+
+type Piece struct {
+  Type PieceType
+  IsBlack bool
+}
+
 type Square struct {
   Num int
   IsBlack bool
   IsActive bool
+  Piece *Piece
 }
 
 type Data struct {
@@ -27,6 +43,8 @@ func CreateData() *Data {
       squares = append(squares, Square{Num: i * 8 + j, IsBlack: isBlack, IsActive: false})
     }
   }
+
+  squares[0].Piece = &Piece{Type: Knight, IsBlack: true}
 
   return &Data{Squares: squares, ActiveSquares: []*Square{}}
 }

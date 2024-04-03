@@ -19,7 +19,38 @@
 {{ block "square" . }}
 <div
   id="square-{{ .Num }}"
-  class="square w-[90px] h-[90px] relative {{ if .IsBlack }} bg-[#10865E] text-[#FFEAC1] {{ else }} bg-[#FFEAC1] text-[#10865E] {{ end }}"
+  class="square w-[90px] h-[90px] relative {{ if .IsBlack }} bg-[#10865E] text-[#FFEAC1] {{ else }} bg-[#FFEAC1] text-[#10865E] {{ end }} bg-[length:80%_80%] bg-no-repeat bg-center bg-scal"
+  {{ if .Piece }}
+    {{ if .Piece.IsBlack }}
+      {{ if eq .Piece.Type 0 }}
+        style="background-image: url('static/pieces/pawn-b.svg')"
+      {{ else if eq .Piece.Type 1 }}
+        style="background-image: url('static/pieces/rook-b.svg')"
+      {{ else if eq .Piece.Type 2 }}
+        style="background-image: url('static/pieces/knight-b.svg')"
+      {{ else if eq .Piece.Type 3 }}
+        style="background-image: url('static/pieces/bishop-b.svg')"
+      {{ else if eq .Piece.Type 4 }}
+        style="background-image: url('static/pieces/queen-b.svg')"
+      {{ else if eq .Piece.Type 5 }}
+        style="background-image: url('static/pieces/king-b.svg')"
+      {{ end }}
+    {{ else }}
+      {{ if eq .Piece.Type 0 }}
+        style="background-image: url('static/pieces/pawn-w.svg')"
+      {{ else if eq .Piece.Type 1 }}
+        style="background-image: url('static/pieces/rook-w.svg')"
+      {{ else if eq .Piece.Type 2 }}
+        style="background-image: url('static/pieces/knight-w.svg')"
+      {{ else if eq .Piece.Type 3 }}
+        style="background-image: url('static/pieces/bishop-w.svg')"
+      {{ else if eq .Piece.Type 4 }}
+        style="background-image: url('static/pieces/queen-w.svg')"
+      {{ else if eq .Piece.Type 5 }}
+        style="background-image: url('static/pieces/king-w.svg')"
+      {{ end }}
+    {{ end }}
+  {{ end }}
 >
   <div class="absolute px-3 py-2">{{ .Num }}</div>
   {{ if .IsActive }}
