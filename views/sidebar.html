@@ -1,6 +1,6 @@
 {{ block "sidebar" .}}
 <div
-  class="h-[728px] min-w-[300px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col items-center"
+  class="h-[728px] min-w-[300px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col gap-4"
 >
   <button
     class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
@@ -11,5 +11,45 @@
   >
     Clear selection
   </button>
+
+  <button
+    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    hx-delete="/clear-board"
+    hx-trigger="click"
+    hx-swap="outerHTML"
+    hx-target="#board"
+  >
+    Clear board
+  </button>
+
+  <button
+    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    hx-delete="/reset-board"
+    hx-trigger="click"
+    hx-swap="outerHTML"
+    hx-target="#board"
+  >
+    Reset board
+  </button>
+
+  <form
+    class="flex flex-col gap-4"
+    hx-post="/set-fen"
+    hx-target="#board"
+    hx-swap="outerHTML"
+  >
+    <input
+      type="text"
+      class="border-2 border-neutral-300 rounded px-2 py-1"
+      placeholder="fen string"
+      name="fen"
+    ></input>
+    <button
+      class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+      type="submit"
+    >
+      Update position
+    </button>
+  </form>
 </div>
 {{ end }}

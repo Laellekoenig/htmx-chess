@@ -11,26 +11,27 @@ import (
 )
 
 type Template struct {
-  tmpl *template.Template
+	tmpl *template.Template
 }
 
 func newTemplate() *Template {
-  return &Template{
-    tmpl: template.Must(template.ParseGlob("views/*.html")),
-  }
+	return &Template{
+		tmpl: template.Must(template.ParseGlob("views/*.html")),
+	}
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-  return t.tmpl.ExecuteTemplate(w, name, data)
+	return t.tmpl.ExecuteTemplate(w, name, data)
 }
 
 func main() {
-  d := data.CreateData()
+	d := data.CreateData()
+	data.ParseFEN(data.FEN_START, d)
 
-  app := echo.New()
-  app.Renderer = newTemplate()
-  app.Use(middleware.Logger())
-  app.Static("/static", "static")
-  routes.AddRoutes(app, d)
-  app.Logger.Fatal(app.Start(":3000"))
+	app := echo.New()
+	app.Renderer = newTemplate()
+	app.Use(middleware.Logger())
+	app.Static("/static", "static")
+	routes.AddRoutes(app, d)
+	app.Logger.Fatal(app.Start(":3000"))
 }
