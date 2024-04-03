@@ -1,0 +1,9 @@
+{{ block "page" . }}
+    <div
+      id="page"
+      class="w-screen h-screen p-0 m-0 bg-neutral-100 flex items-center justify-center gap-6"
+    >
+      {{ template "board" .}}
+      {{ template "sidebar" .}}
+    </div>
+{{ end }}

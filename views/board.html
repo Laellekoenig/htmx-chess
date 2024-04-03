@@ -1,6 +1,6 @@
 {{ block "board" .}}
 <div
-  class="border-4 border-[#10865E] rounded"
+  class="border-4 border-[#10865e] rounded"
   id="board"
   hx-get="/refresh-board"
   hx-swap="outerHTML"
@@ -9,7 +9,7 @@
   <div
     class="w-[720px] h-[720px] shadow-lg text-sm flex flex-wrap"
   >
-    {{ range .Squares}}
+    {{ range .Squares }}
       {{ template "square" . }}
     {{ end }}
   </div>
@@ -19,7 +19,7 @@
 {{ block "square" . }}
 <div
   id="square-{{ .Num }}"
-  class="square w-[90px] h-[90px] relative {{ if .IsBlack }} bg-[#10865E] text-[#FFEAC1] {{ else }} bg-[#FFEAC1] text-[#10865E] {{ end }} bg-[length:80%_80%] bg-no-repeat bg-center bg-scal"
+  class="square w-[90px] h-[90px] relative {{ if .IsBlack }} bg-[#10865e] text-[#ffeac1] {{ else }} bg-[#ffeac1] text-[#10865e] {{ end }} bg-[length:80%_80%] bg-no-repeat bg-center bg-scal"
   {{ if .Piece }}
     {{ if .Piece.IsBlack }}
       {{ if eq .Piece.Type 0 }}
@@ -52,7 +52,7 @@
     {{ end }}
   {{ end }}
 >
-  <div class="absolute px-3 py-2">{{ .Num }}</div>
+  <div class="absolute px-2 py-1 text-xs">{{ .Coordinate }}</div>
   {{ if .IsActive }}
     <div class="absolute w-full h-full duration-100 bg-sky-400 bg-opacity-70 cursor-pointer"></div>
   {{ else }}

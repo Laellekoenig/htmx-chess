@@ -1,0 +1,39 @@
+{{ block "stats" .}}
+<div class="w-full p-2 rounded bg-[#0C6446] text-neutral-100">
+  <p class="font-semibold">
+    {{ if .BlackToMove }}
+      Black
+    {{ else }}
+      White
+    {{ end }}
+    to move
+  </p>
+
+  <p>Move Nr: {{ .Move }}</p>
+
+  <p>Casteling rights:
+    {{ if .WhiteMayCastleShort }}
+      K
+    {{ end }}
+    {{ if .WhiteMayCastleLong }}
+      Q
+    {{ end }}
+    {{ if .BlackMayCastleShort }}
+      k
+    {{ end }}
+    {{ if .BlackMayCastleLong }}
+      q
+    {{ end }}
+  </p>
+
+  <p>50-moves rule: {{ .FiftyMoves }}</p>
+
+  <p>En passant:
+    {{ if .EnPassant }}
+      {{ .EnPassant.Coordinate }}
+    {{ else }}
+      No
+    {{ end }}
+  </p>
+</div>
+{{ end }}
