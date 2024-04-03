@@ -1,0 +1,15 @@
+{{ block "sidebar" .}}
+<div
+  class="h-[728px] min-w-[300px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col items-center"
+>
+  <button
+    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    hx-delete="/remove-active"
+    hx-trigger="click"
+    hx-swap="outerHTML"
+    hx-target="#board"
+  >
+    Clear selection
+  </button>
+</div>
+{{ end }}

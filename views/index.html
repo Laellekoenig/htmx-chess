@@ -11,18 +11,10 @@
   <body>
     <div
       id="page"
-      class="w-screen h-screen p-0 m-0 bg-neutral-100 flex items-center justify-center gap-4"
+      class="w-screen h-screen p-0 m-0 bg-neutral-100 flex items-center justify-center gap-6"
     >
       {{ template "board" .}}
-      <button
-        class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
-        hx-delete="/remove-active"
-        hx-trigger="click"
-        hx-swap="outerHTML"
-        hx-target="#board"
-      >
-        Clear selection
-      </button>
+      {{ template "sidebar" .}}
     </div>
     <script>
       // keep focus on square after htmx swap

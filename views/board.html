@@ -4,7 +4,7 @@
   id="board"
   hx-get="/refresh-board"
   hx-swap="outerHTML"
-  hx-trigger="load delay:500ms"
+  hx-trigger="load delay:1000ms"
 >
   <div
     class="w-[720px] h-[720px] shadow-lg text-sm flex flex-wrap"
@@ -30,7 +30,7 @@
       class="square-hover absolute w-full h-full duration-100 hover:border-4 border-sky-400 cursor-pointer"
       hx-post="/select-square/{{ .Num }}"
       hx-swap="outerHTML"
-      hx-target="#square-{{ .Num }}"
+      hx-target="#board"
     ></div>
   {{ end }}
 </div>
