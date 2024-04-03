@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTMX Chess</title>
     <script src="https://cdn.twind.style" crossorigin></script>
     <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
@@ -22,5 +24,30 @@
         Clear selection
       </button>
     </div>
+    <script>
+      // keep focus on square after htmx swap
+      document.addEventListener("DOMContentLoaded", () => {
+        let lastHoveredSquare = null;
+
+        document.addEventListener("mouseover", (event) => {
+          if (event.target.classList.contains("square-hover")) {
+            lastHoveredSquare = event.target;
+          }
+        });
+
+        document.addEventListener("mouseout", (event) => {
+          if (event.target.classList.contains("square-hover")) {
+            lastHoveredSquare = null;
+          }
+        });
+
+        document.addEventListener("htmx:afterSwap", () => {
+          if (lastHoveredSquare) {
+            lastHoveredSquare = document.querySelector("#" + lastHoveredSquare.id);
+            lastHoveredSquare.classList.add("border-4", "border-sky-400");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
