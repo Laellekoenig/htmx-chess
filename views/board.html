@@ -7,7 +7,7 @@
   hx-trigger="load delay:1000ms"
 >
   <div
-    class="w-[720px] h-[720px] shadow-lg text-sm flex flex-wrap"
+    class="w-[350px] h-[350px] sm:w-[450px] sm:h-[450px] md:w-[550px] md:h-[550px] lg:w-[650px] lg:h-[650px] shadow-lg text-sm flex flex-wrap"
   >
     {{ range .Squares }}
       {{ template "square" . }}
@@ -19,7 +19,7 @@
 {{ block "square" . }}
 <div
   id="square-{{ .Num }}"
-  class="square w-[90px] h-[90px] relative {{ if .IsBlack }} bg-[#10865e] text-[#ffeac1] {{ else }} bg-[#ffeac1] text-[#10865e] {{ end }} bg-[length:80%_80%] bg-no-repeat bg-center bg-scal"
+  class="square h-[12.5%] w-[12.5%] relative {{ if .IsBlack }} bg-[#10865e] text-[#ffeac1] {{ else }} bg-[#ffeac1] text-[#10865e] {{ end }} bg-[length:80%_80%] bg-no-repeat bg-center bg-scal"
   {{ if .Piece }}
     {{ if .Piece.IsBlack }}
       {{ if eq .Piece.Type 0 }}
@@ -52,7 +52,7 @@
     {{ end }}
   {{ end }}
 >
-  <div class="absolute px-2 py-1 text-xs">{{ .Coordinate }}</div>
+  <div class="absolute px-2 py-1 text-xs hidden md:block">{{ .Coordinate }}</div>
   {{ if .IsActive }}
     <div
       class="absolute w-full h-full duration-100 bg-sky-400 bg-opacity-70 cursor-pointer"

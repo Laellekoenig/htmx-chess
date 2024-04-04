@@ -42,11 +42,6 @@ func AddRoutes(app *echo.Echo, g *game.Game) {
 		return c.Render(http.StatusOK, "page", *g)
 	})
 
-	app.DELETE("/clear-board", func(c echo.Context) error {
-		g.ClearBoard()
-		return c.Render(http.StatusOK, "page", *g)
-	})
-
 	app.DELETE("/remove-active", func(c echo.Context) error {
 		g.ClearActiveSquares()
 		return c.Render(http.StatusOK, "board", *g)

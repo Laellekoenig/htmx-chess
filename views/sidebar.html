@@ -1,21 +1,11 @@
 {{ block "sidebar" .}}
 <div
-  class="h-[728px] w-[400px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col gap-4 overflow-scroll"
+  class="p-4 w-[358px] sm:w-[458px] md:w-[558px] bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col gap-4 overflow-scroll"
 >
   {{ template "stats" . }}
   <div
     class="text-xs bg-red-900 text-neutral-100 px-2 py-1 rounded h-10 overflow-x-scroll flex items-center whitespace-nowrap"
     >{{ getFen . }}</div>
-
-  <button
-    class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
-    hx-delete="/clear-board"
-    hx-trigger="click"
-    hx-swap="outerHTML"
-    hx-target="#page"
-  >
-    Clear board
-  </button>
 
   <button
     class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
