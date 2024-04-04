@@ -43,6 +43,42 @@ func (g *Game) GetFen() string {
 		}
 	}
 
+  if g.BlackToMove {
+    res += " b "
+  } else {
+    res += " w "
+  }
+
+  if g.WhiteMayCastleShort {
+    res += "K"
+  }
+
+  if g.WhiteMayCastleLong {
+    res += "Q"
+  }
+
+  if g.BlackMayCastleShort {
+    res += "k"
+  }
+
+  if g.BlackMayCastleLong {
+    res += "q"
+  }
+
+  if g.WhiteMayCastleShort || g.WhiteMayCastleLong || g.BlackMayCastleShort || g.BlackMayCastleLong {
+    res += " "
+  } else {
+    res += "- "
+  }
+
+  if g.EnPassant != nil {
+    res += g.EnPassant.Coordinate + " "
+  } else {
+    res += "- "
+  }
+
+  res += fmt.Sprintf("%d %d", g.FiftyMoves, g.Move)
+
 	return res
 }
 
@@ -74,6 +110,7 @@ func parseFenRow(row string, i int, board *[]*Square) error {
 	}
 
 	if curr != 8 {
+    fmt.Printf("%v %v\n", i, curr)
 		return fmt.Errorf("Invalid FEN position")
 	}
 

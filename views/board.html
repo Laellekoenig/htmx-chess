@@ -54,14 +54,19 @@
 >
   <div class="absolute px-2 py-1 text-xs">{{ .Coordinate }}</div>
   {{ if .IsActive }}
-    <div class="absolute w-full h-full duration-100 bg-sky-400 bg-opacity-70 cursor-pointer"></div>
+    <div
+      class="absolute w-full h-full duration-100 bg-sky-400 bg-opacity-70 cursor-pointer"
+      hx-delete="/remove-active"
+      hx-swap="outerHTML"
+      hx-target="#board"
+    ></div>
   {{ else }}
     <div
       id="hover-{{ .Num }}"
       class="square-hover absolute w-full h-full duration-100 hover:border-4 border-sky-400 cursor-pointer"
       hx-post="/select-square/{{ .Num }}"
       hx-swap="outerHTML"
-      hx-target="#board"
+      hx-target="#page"
     ></div>
   {{ end }}
 </div>

@@ -23,8 +23,11 @@ func AddRoutes(app *echo.Echo, g *game.Game) {
 		if err != nil {
 			return c.String(400, "Invalid id")
 		}
+
 		g.ActivateSquare(id)
-		return c.Render(http.StatusOK, "board", *g)
+    g.MoveActiveSquares()
+
+		return c.Render(http.StatusOK, "page", *g)
 	})
 
 	app.POST("/set-fen", func(c echo.Context) error {

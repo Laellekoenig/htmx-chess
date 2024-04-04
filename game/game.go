@@ -102,5 +102,25 @@ func (g *Game) GetSquare(square string) (*Square, error) {
 		return nil, fmt.Errorf("Invalid row")
 	}
 
-	return g.Squares[row*8+col], nil
+	return g.Squares[(7-row)*8+col], nil
+}
+
+func (g *Game) MakeMove(from, to *Square) error {
+  if from.Piece == nil {
+    return fmt.Errorf("From square does not contain piece.")
+  }
+
+  to.Piece = from.Piece
+  from.Piece = nil
+  return nil
+}
+
+func (g *Game) MoveActiveSquares() error {
+  if len(g.ActiveSquares) == 2 {
+    err := g.MakeMove(g.ActiveSquares[0], g.ActiveSquares[1])
+    g.ClearActiveSquares()
+    return err
+  }
+
+  return nil
 }
