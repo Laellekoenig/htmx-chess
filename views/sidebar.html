@@ -4,14 +4,14 @@
 >
   {{ template "stats" . }}
   <div
-    class="text-xs bg-red-900 text-neutral-100 px-2 py-1 rounded"
+    class="text-xs bg-red-900 text-neutral-100 px-2 py-1 rounded h-8 flex items-center"
     hx-get="/fen"
     hx-trigger="load"
   ></div>
 
 
   <button
-    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
     hx-delete="/remove-active"
     hx-trigger="click"
     hx-swap="outerHTML"
@@ -21,7 +21,7 @@
   </button>
 
   <button
-    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
     hx-delete="/clear-board"
     hx-trigger="click"
     hx-swap="outerHTML"
@@ -31,7 +31,7 @@
   </button>
 
   <button
-    class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+    class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
     hx-delete="/reset-board"
     hx-trigger="click"
     hx-swap="outerHTML"
@@ -53,7 +53,7 @@
       name="fen"
     ></input>
     <button
-      class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
+      class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
       type="submit"
     >
       Update position

@@ -9,6 +9,7 @@ import (
 const FEN_STARTING_POS = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 func (g *Game) SetStartingPos() {
+  g.ClearBoard()
   g.FillFen(FEN_STARTING_POS)
 }
 

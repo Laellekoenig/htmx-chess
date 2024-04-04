@@ -35,5 +35,13 @@
         });
       });
     </script>
+    <script>
+      document.addEventListener("htmx:load", function (event) {
+        const buttons = document.querySelectorAll(".button");
+        buttons.forEach((button) => {
+          button.classList.add("duration-100");
+        });
+      });
+  </script>
   </body>
 </html>
