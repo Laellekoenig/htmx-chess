@@ -1,10 +1,8 @@
 package routes
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/Laellekoenig/htmx-chess/game"
 	"github.com/labstack/echo/v4"
@@ -25,36 +23,34 @@ func AddRoutes(app *echo.Echo, g *game.Game) {
 		if err != nil {
 			return c.String(400, "Invalid id")
 		}
-		game.SetActive(g, id)
+		g.ActivateSquare(id)
 		return c.Render(http.StatusOK, "board", *g)
 	})
 
 	app.POST("/set-fen", func(c echo.Context) error {
 		fen := c.FormValue("fen")
-		game.ClearBoard(g)
-
-    if strings.Contains(fen, " ") {
-      game.ParseFEN(fen, g)
-    } else {
-		  game.ParseFENPosition(fen, g)
-    }
-
+		g.ClearBoard()
+		g.FillFen(fen)
 		return c.Render(http.StatusOK, "page", *g)
 	})
 
 	app.DELETE("/reset-board", func(c echo.Context) error {
-    err := game.ParseFEN(game.FEN_START, g)
-    fmt.Println(err)
-		return c.Render(http.StatusOK, "board", *g)
+		g.SetStartingPos()
+		return c.Render(http.StatusOK, "page", *g)
 	})
 
 	app.DELETE("/clear-board", func(c echo.Context) error {
-		game.ClearBoard(g)
-		return c.Render(http.StatusOK, "board", *g)
+		g.ClearBoard()
+		return c.Render(http.StatusOK, "page", *g)
 	})
 
 	app.DELETE("/remove-active", func(c echo.Context) error {
-		game.ClearAllActiveSquares(g)
+		g.ClearActiveSquares()
 		return c.Render(http.StatusOK, "board", *g)
 	})
+
+  app.GET("/fen", func(c echo.Context) error {
+    fen := g.GetFen()
+    return c.HTML(http.StatusOK, "<p>" + fen + "</p>")
+  })
 }

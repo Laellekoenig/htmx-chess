@@ -1,9 +1,14 @@
 {{ block "sidebar" .}}
 <div
-  class="h-[728px] min-w-[300px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col gap-4"
+  class="h-[728px] w-[400px] p-4 bg-neutral-200 rounded shadow border-4 border-neutral-300 flex flex-col gap-4 overflow-scroll"
 >
   {{ template "stats" . }}
-  {{ template "fen" . }}
+  <div
+    class="text-xs bg-red-900 text-neutral-100 px-2 py-1 rounded"
+    hx-get="/fen"
+    hx-trigger="load"
+  ></div>
+
 
   <button
     class="px-4 py-2 bg-neutral-700 text-neutral-100 rounded duration-100 hover:bg-neutral-800"
@@ -20,7 +25,7 @@
     hx-delete="/clear-board"
     hx-trigger="click"
     hx-swap="outerHTML"
-    hx-target="#board"
+    hx-target="#page"
   >
     Clear board
   </button>
@@ -30,7 +35,7 @@
     hx-delete="/reset-board"
     hx-trigger="click"
     hx-swap="outerHTML"
-    hx-target="#board"
+    hx-target="#page"
   >
     Reset board
   </button>
