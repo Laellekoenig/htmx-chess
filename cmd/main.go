@@ -16,7 +16,11 @@ type Template struct {
 
 func newTemplate() *Template {
 	return &Template{
-		tmpl: template.Must(template.ParseGlob("views/*.html")),
+		tmpl: template.Must(template.New("t").Funcs(template.FuncMap{
+      "getFen": func(g game.Game) interface{} {
+        return g.GetFen()
+      },
+		}).ParseGlob("views/*.html")),
 	}
 }
 
@@ -32,5 +36,5 @@ func main() {
 	app.Static("/static", "static")
 	routes.AddRoutes(app, g)
 	app.Logger.Fatal(app.Start(":3000"))
-  app.Start(":3000")
+	app.Start(":3000")
 }

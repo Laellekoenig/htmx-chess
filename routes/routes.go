@@ -51,9 +51,4 @@ func AddRoutes(app *echo.Echo, g *game.Game) {
 		g.ClearActiveSquares()
 		return c.Render(http.StatusOK, "board", *g)
 	})
-
-  app.GET("/fen", func(c echo.Context) error {
-    fen := g.GetFen()
-    return c.HTML(http.StatusOK, "<p>" + fen + "</p>")
-  })
 }

@@ -5,20 +5,7 @@
   {{ template "stats" . }}
   <div
     class="text-xs bg-red-900 text-neutral-100 px-2 py-1 rounded h-10 overflow-x-scroll flex items-center whitespace-nowrap"
-    hx-get="/fen"
-    hx-trigger="load"
-  ></div>
-
-
-  <button
-    class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
-    hx-delete="/remove-active"
-    hx-trigger="click"
-    hx-swap="outerHTML"
-    hx-target="#board"
-  >
-    Clear selection
-  </button>
+    >{{ getFen . }}</div>
 
   <button
     class="button px-4 py-2 bg-neutral-700 text-neutral-100 rounded hover:bg-neutral-800"
